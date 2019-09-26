@@ -23,6 +23,14 @@ public class CanService {
 	}
  
   public void reserveCan(Details details) {
-				waterdao.reserve(details);
+				try {
+					waterdao.reserve(details);
+					Availability availableStock=dao.getStock();
+					int value=details.getReservedList();
+					int value1=availableStock.getAvailability_List()-value;
+					dao.admin1(value1);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
   }
   }

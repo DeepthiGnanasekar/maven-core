@@ -10,11 +10,10 @@ public class AdminService {
 	
 	AdminDao admindao = new AdminDao();
 	WaterDao waterdao = new WaterDao();
-	
 	 public  AdminDetails adminLogin(String name,String password) throws DBException {
 		 AdminDetails admin = null;
-    	 try {
-    		 admin=new AdminDetails();
+		 try {
+			 admin=new AdminDetails();
     		 admin=admindao.adminLogin(name,password);
 		} catch (SQLException e) {
 			throw new DBException(e.getMessage());
@@ -22,7 +21,5 @@ public class AdminService {
 			throw new DBException(e.getMessage());
 		}
 		return admin;
-    	 
      }
-	 
 }

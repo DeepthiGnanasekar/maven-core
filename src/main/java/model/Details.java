@@ -30,7 +30,7 @@ public class Details {
 		return this.quantyList = quantyList;
 	}
 
-	public  double getReservedList() {
+	public  int getReservedList() {
 		return reservedList;
 	}
 

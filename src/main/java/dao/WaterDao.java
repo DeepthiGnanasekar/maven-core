@@ -40,7 +40,7 @@ public class WaterDao implements WaterDaoImp {
 		try {
 			String sql = "insert into quantity_List(Quantity_List,Mobile_Number) values(?,?)";
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setDouble(1, water.getQuantyList());
+			pst.setInt(1, water.getQuantyList());
 			pst.setLong(2, water.getNumber());
 			 pst.executeUpdate();
 		} catch (SQLException e) {
@@ -50,12 +50,13 @@ public class WaterDao implements WaterDaoImp {
 
 	public void reserve(Details water) {
 		try {
-			String sql = "insert quantity_List(Reserved_List,Mobile_Number) values (?,?)";
+			System.out.println("hii");
+			String sql = "insert into quantity_List(Mobile_Number, Reserved_List) values(?, ?)";
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setDouble(1, water.getReservedList());
-			pst.setDouble(1, water.getNumber());
-			int rows = pst.executeUpdate();
-			System.out.println("no of rows inserted:" + rows);
+			pst.setInt(2, water.getReservedList());
+			 pst.setDouble(1, water.getNumber());
+			 int rows = pst.executeUpdate();
+			 System.out.println("no of rows inserted:" + rows);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
