@@ -1,4 +1,5 @@
 package dao;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -11,38 +12,38 @@ import util.ConnectionUtil;
 
 public class WaterDao implements WaterDaoImp {
 	Connection con = ConnectionUtil.getConnection();
-	 PreparedStatement pst = null;
-     Details water = new Details();
-     
-     public  int findavailability(){
-    	    int availableStock = 0;
-    	        Connection con = ConnectionUtil.getConnection();
-    	        String sql = "select * from availability_List";
-    	        PreparedStatement pst = null;
-    	        Availability stock=null;
-    	        try {
-    	            pst = con.prepareStatement(sql);
-    	            ResultSet rs = pst.executeQuery();
-    	            while(rs.next()) {
-    	                
-    	            	stock = new Availability();
-    	                availableStock=rs.getInt("cans_avail");
-    	                Date date = rs.getDate("date");
-    	                stock.setDate(date.toLocalDate());
-    	            }
-    	        } catch (SQLException e) {
-    	            e.printStackTrace();
-    	        }
-    	        return availableStock;
-    	    }
-     
-	 public void quantity(Details water) {
+	PreparedStatement pst = null;
+	Details water = new Details();
+
+	public int findavailability() {
+		int availableStock = 0;
+		Connection con = ConnectionUtil.getConnection();
+		String sql = "select * from availability_List";
+		PreparedStatement pst = null;
+		Availability stock = null;
+		try {
+			pst = con.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+
+				stock = new Availability();
+				availableStock = rs.getInt("cans_avail");
+				Date date = rs.getDate("date");
+				stock.setDate(date.toLocalDate());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return availableStock;
+	}
+
+	public void quantity(Details water) {
 		try {
 			String sql = "insert into quantity_List(Quantity_List,Mobile_Number) values(?,?)";
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setInt(1, water.getQuantyList());
 			pst.setLong(2, water.getNumber());
-			 pst.executeUpdate();
+			pst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -50,13 +51,11 @@ public class WaterDao implements WaterDaoImp {
 
 	public void reserve(Details water) {
 		try {
-			System.out.println("hii");
 			String sql = "insert into quantity_List(Mobile_Number, Reserved_List) values(?, ?)";
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setInt(2, water.getReservedList());
-			 pst.setDouble(1, water.getNumber());
-			 int rows = pst.executeUpdate();
-			 System.out.println("no of rows inserted:" + rows);
+			pst.setDouble(1, water.getNumber());
+			pst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -74,7 +73,6 @@ public class WaterDao implements WaterDaoImp {
 		}
 	}
 
-	
 	public void reserve1(Details water) {
 		try {
 			String sql = "update quantity_List set Reserved_Order=?";
@@ -98,8 +96,4 @@ public class WaterDao implements WaterDaoImp {
 		}
 	}
 
-	
-
-	
-	
 }

@@ -6,6 +6,7 @@ public interface UserDaoImp {
 	UserDetails login(String name, String setPassword) throws SQLException,DBException;
 	UserDetails findByID(int id) throws SQLException,DBException;
 	void register(UserDetails details) throws SQLException, DBException;
+	public UserDetails findByMobileNumber(long number) throws SQLException, DBException;
 
 	
 

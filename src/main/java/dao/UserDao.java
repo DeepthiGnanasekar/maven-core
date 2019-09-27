@@ -25,7 +25,6 @@ public class UserDao implements UserDaoImp {
 			System.out.println("no of rows inserted:" + rows);
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DBException("This account is already existing!!!...Please enter a valid details...");
 		}
 		finally
@@ -58,8 +57,30 @@ public class UserDao implements UserDaoImp {
 		return details;
 	}
 
-	
-	
+	public UserDetails findByMobileNumber(long number) throws SQLException, DBException {
+		UserDetails mobileNumber = null;
+		try {
+			
+			String sql = "select * from user_Info where Mobile_Number = ?";
+			 pst = con.prepareStatement(sql);
+			pst.setLong(1, number);
+			ResultSet rs1 = pst.executeQuery();
+			if (rs1.next()) {
+				mobileNumber = new UserDetails();
+				mobileNumber = toRow(rs1);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+		finally
+		{
+		pst.close();	
+		}
+		
+		return mobileNumber;
+	}
 
 	
 	public UserDetails findByID(int id) throws SQLException, DBException {
