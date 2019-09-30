@@ -17,7 +17,7 @@ public  void validCheck(String name, String password) throws Exception
 	   
     if (password.length() > 15 || password.length() < 8)
     {
-            throw new ValidatorException("Password should be less than 15 and more than 8 characters in length.");
+            throw new ValidatorException("Password should contain atleast one upper case alphabet,one lower case alphabet,atleast one number,atleast one special character and should be less than 15 and more than 8 characters in length.");
     }
     String upperCaseChars = "(.*[A-Z].*)";
     if (!password.matches(upperCaseChars ))
@@ -61,7 +61,7 @@ public void validateNumber(String number) throws ValidatorException {
 	{
 		if(number.length() < 10 || number.length() > 10)
 		{
-			throw new ValidatorException("Invalid phone number");
+			throw new ValidatorException("Enter valid phone number");
 			
 		}
 		 String upperCaseChars = "(.*[A-Z].*)";

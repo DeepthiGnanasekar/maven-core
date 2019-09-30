@@ -8,12 +8,13 @@ import java.sql.SQLException;
 public class ConnectionUtil {
     public static Connection getConnection() { ///method is used to get DB connection
         String driverClassName = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/waterstock_db";
-        String userName = "root";
-        String password = "root";
+        String url = "jdbc:mysql://trainingdb.ck1ayq0lncmp.ap-south-1.rds.amazonaws.com:3306/deepthi_db";
+        String userName = "deepthi";
+        String password = "deepthi";
         Connection con = null;
         try {
             Class.forName(driverClassName);
+            System.out.println(url);
             con = DriverManager.getConnection(url, userName, password);
         } catch (SQLException e) {
             e.printStackTrace();

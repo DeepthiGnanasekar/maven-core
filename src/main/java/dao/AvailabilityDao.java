@@ -57,7 +57,7 @@ public class AvailabilityDao {
  	       
  	        	availability.setAvailability_List(rs.getInt("Availability_List"));
  	            Date date = rs.getDate("Date");
- 	           availability.setDate(date.toLocalDate());
+ 	            availability.setDate(date.toLocalDate());
  	        
  	        }
  	    } catch (SQLException e) {
