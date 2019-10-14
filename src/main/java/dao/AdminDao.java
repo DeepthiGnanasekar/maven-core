@@ -12,7 +12,7 @@ public class AdminDao {
 	 PreparedStatement pst = null;	
 public  AdminDetails adminLogin(String name,String password) throws  SQLException, DBException {
 	
-	AdminDetails details = null;
+		AdminDetails details = null;
 		try {
 			String sql = "select * from admin where Name = ? and Password = ?";
 			 pst = con.prepareStatement(sql);
@@ -20,10 +20,11 @@ public  AdminDetails adminLogin(String name,String password) throws  SQLExceptio
 			pst.setString(2, password);
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
+				details = new AdminDetails();
 				details = toRow(rs);
 			}
-
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new DBException("Invalid Credentials...!!!",e);
 		}
 		finally
@@ -33,12 +34,10 @@ public  AdminDetails adminLogin(String name,String password) throws  SQLExceptio
 		return details;
 	}
 
-
 private AdminDetails toRow(ResultSet rs) throws SQLException {
 	String name = rs.getString("Name");
-	String setPassword = rs.getString("Set_Password");
+	String setPassword = rs.getString("Password");
 	AdminDetails info = new AdminDetails();
-	
 	info.setName(name);
 	info.setPassword(setPassword);
 	return info;

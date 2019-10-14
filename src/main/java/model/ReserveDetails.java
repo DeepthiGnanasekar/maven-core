@@ -2,17 +2,21 @@ package model;
 
 import java.time.LocalDate;
 
-public class Details {
-	
-	
+public class ReserveDetails {
+	private int id;
 	private LocalDate date;
-	private  int quantyList;
 	private int reservedList;
 	private int reservedOrder;
-	private int quanty;
 	private String status;
     private long number;
-	
+    
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public LocalDate getDate() {
 		return date;
@@ -21,15 +25,6 @@ public class Details {
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
-
-	public int getQuantyList() {
-		return quantyList;
-	}
-
-	public  int setQuantyList(int quantyList) {
-		return this.quantyList = quantyList;
-	}
-
 	public  int getReservedList() {
 		return reservedList;
 	}
@@ -45,15 +40,6 @@ public class Details {
 	public void setReservedOrder(int reservedOrder) {
 		this.reservedOrder = reservedOrder;
 	}
-
-	public  int getQuanty() {
-		return quanty;
-	}
-
-	public void setQuanty(int quanty) {
-		this.quanty = quanty;
-	}
-
 	public String getStatus() {
 		return status;
 	}
@@ -69,5 +55,4 @@ public class Details {
 	public void setNumber(long number2) {
 		this.number = number2;
 	}
-
 }

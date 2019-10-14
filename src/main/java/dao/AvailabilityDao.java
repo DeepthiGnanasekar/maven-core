@@ -1,20 +1,17 @@
 package dao;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-
 import model.Availability;
-import model.Details;
 import util.ConnectionUtil;
 
 public class AvailabilityDao {
 	Connection con = ConnectionUtil.getConnection();
 	 PreparedStatement pst = null;
-     Details water = new Details();
      Availability details = new Availability();
 
      public List<Availability> viewStock() throws Exception{
@@ -31,8 +28,8 @@ public class AvailabilityDao {
     	            
     	        	Availability stock = new Availability();
     	            stock.setAvailability_List(rs.getInt("Availability_List"));
-    	            Date date = rs.getDate("Date");
-    	            stock.setDate(date.toLocalDate());
+    	            Timestamp date = rs.getTimestamp("Date");
+    	            stock.setDate(date.toLocalDateTime());
     	            list.add(stock);
     	        }
     	    } catch (SQLException e) {
@@ -53,12 +50,9 @@ public class AvailabilityDao {
  	        pst = con.prepareStatement(sql);
  	        ResultSet rs = pst.executeQuery();
  	        while(rs.next()) {
- 	            
- 	       
  	        	availability.setAvailability_List(rs.getInt("Availability_List"));
- 	            Date date = rs.getDate("Date");
- 	            availability.setDate(date.toLocalDate());
- 	        
+ 	            Timestamp date = rs.getTimestamp("Date");
+ 	            availability.setDate(date.toLocalDateTime());
  	        }
  	    } catch (SQLException e) {
  	        e.printStackTrace();
@@ -72,7 +66,7 @@ public class AvailabilityDao {
  			String sql = "update availability_List set Availability_List=? ";
  			PreparedStatement pst = con.prepareStatement(sql);
  			pst.setInt(1,cans);
- 		  pst.executeUpdate();
+ 		    pst.executeUpdate();
  		} catch (SQLException e){
  			e.printStackTrace();
  		}

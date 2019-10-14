@@ -14,17 +14,16 @@ public class UserDao implements UserDaoImp {
 	public void register(UserDetails user) throws  SQLException, DBException {
 		
 		try {
-			
 			String sql = "insert into user_Info(Name,Mobile_Number,Set_Password) values (?,?,?)";
 			Long mobile=Long.parseLong(user.getMobileNumber());
 			 pst = con.prepareStatement(sql);
 			pst.setString(1, user.getName());
 			pst.setLong(2, mobile);
 			pst.setString(3, user.getSetPassword());
-			int rows = pst.executeUpdate();
-			System.out.println("no of rows inserted:" + rows);
-
+		    pst.executeUpdate();
+			
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new DBException("This account is already existing!!!...Please enter a valid details...");
 		}
 		finally
@@ -117,7 +116,7 @@ public class UserDao implements UserDaoImp {
 		String phone_number = rs1.getString("Mobile_Number");
 		String setPassword = rs1.getString("Set_Password");
 		UserDetails user = new UserDetails();
-		user.setID(id);
+		user.setId(id);
 		user.setName(name);
 		user.setMobileNumber(phone_number);
 		user.setSetPassword(setPassword);

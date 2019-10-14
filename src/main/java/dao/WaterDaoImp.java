@@ -1,18 +1,25 @@
 package dao;
-import java.sql.SQLException;
-import exception.DBException;
-import model.Details;
+import model.OrderDetails;
+import model.ReserveDetails;
 
 public interface WaterDaoImp {
 
-	public void quantity(Details water)throws  SQLException, DBException;
+	public int findavailability();
+	
+	public void quantity(OrderDetails ordercan);
+	
+	public int findByOrderId(OrderDetails ordercan);
+	
+	public void reserve(ReserveDetails reservecan);
 
-	void status(Details water)throws  SQLException, DBException;
-
-	void reserve(Details water)throws  SQLException, DBException;
-
-	void reserve1(Details water)throws  SQLException, DBException;
-
-	void reserveu(Details water)throws  SQLException, DBException;
+	public int findByReserveId(ReserveDetails reservecan);
+	
+	public void reserveu(ReserveDetails reservecan);
+	
+	public void reserve1(ReserveDetails reservecan);
+	
+	public void status(OrderDetails ordercan);
+	
+	public void review(ReserveDetails reservecan);
 
 }
